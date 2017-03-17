@@ -331,6 +331,12 @@ System.out.println(i+" records updated");
 import java.applet.Applet;
 import java.awt.Graphics;
 
+<!--
+    <applet code="UseParam.class" width="300" height="300">
+      <param name="msg" value="Welcome to applet">
+    </applet>
+-->
+
 public class UseParam extends Applet {
   public void paint(Graphics g) {  
     String str=getParameter("msg");  
@@ -338,14 +344,3 @@ public class UseParam extends Applet {
   }  
 }
 ```
-
-``` html
-<html>
-  <body>
-    <applet code="UseParam.class" width="300" height="300">
-      <param name="msg" value="Welcome to applet">
-    </applet>
-  </body>
-</html>
-```
-
