@@ -301,3 +301,51 @@ The javax.swing package provides classes for java swing API such as JButton, JTe
   -	AWT provides less components than Swing.	Swing provides more powerful components such as     tables, lists, scrollpanes, colorchooser, tabbedpane etc.
   -	AWT doesn't follows MVC(Model View Controller) where model represents data, view represents   presentation and controller acts as an interface between model and view.	Swing follows MVC.
 
+## Preapered Statement
+Sometimes it is more convenient to use a PreparedStatement object for sending SQL statements to the database. This special type of statement is derived from the more general class, Statement, that you already know.
+
+If you want to execute a Statement object many times, it usually reduces execution time to use a PreparedStatement object instead.
+
+The main feature of a PreparedStatement object is that, unlike a Statement object, it is given a SQL statement when it is created. The advantage to this is that in most cases, this SQL statement is sent to the DBMS right away, where it is compiled. As a result, the PreparedStatement object contains not just a SQL statement, but a SQL statement that has been precompiled. This means that when the PreparedStatement is executed, the DBMS can just run the PreparedStatement SQL statement without having to compile it first.
+
+Although PreparedStatement objects can be used for SQL statements with no parameters, you probably use them most often for SQL statements that take parameters. The advantage of using SQL statements that take parameters is that you can use the same statement and supply it with different values each time you execute it. Examples of this are in the following sections.
+
+``` java
+PreparedStatement statement=con.prepareStatement("update emp set name=? where id=?");  
+statement.setString(1,"smit");//1 specifies the first parameter in the query i.e. name  
+statement.setInt(2,101);  
+
+int i=statement.executeUpdate();  
+System.out.println(i+" records updated");  
+```
+
+## Lifecycle of applet
+  - public void init(): is used to initialized the Applet. It is invoked only once.
+  - public void start(): is invoked after the init() method or browser is maximized. It is used to start the Applet.
+  - public void stop(): is used to stop the Applet. It is invoked when Applet is stop or  browser is minimized.
+  - public void destroy(): is used to destroy the Applet. It is invoked only once.
+
+
+## Passing Paramters to applet using param tag
+``` java
+import java.applet.Applet;
+import java.awt.Graphics;
+
+public class UseParam extends Applet {
+  public void paint(Graphics g) {  
+    String str=getParameter("msg");  
+    g.drawString(str,50, 50);  
+  }  
+}
+```
+
+``` html
+<html>
+  <body>
+    <applet code="UseParam.class" width="300" height="300">
+      <param name="msg" value="Welcome to applet">
+    </applet>
+  </body>
+</html>
+```
+
