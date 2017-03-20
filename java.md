@@ -322,6 +322,8 @@ System.out.println(i+" records updated");
 ## Lifecycle of applet
   - public void init(): is used to initialized the Applet. It is invoked only once.
   - public void start(): is invoked after the init() method or browser is maximized. It is used to start the Applet.
+  - public void paint()
+  - public void update()
   - public void stop(): is used to stop the Applet. It is invoked when Applet is stop or  browser is minimized.
   - public void destroy(): is used to destroy the Applet. It is invoked only once.
 
@@ -368,3 +370,134 @@ The java.awt package provides classes for AWT api such as TextField, Label, Text
 ## Disadvantages of JDBC
 1) Correct drivers need to be deployed for each type of database
 2) Cannot update or insert multiple tables with sequence.
+
+## DisAdvantages of applet
+  - If we are running an applet from a provider who is not trustworthy than security is important.
+  - Applet itself cannot run or modify any application on the local system.
+  - Applets has no access to client-side resources such as files , OS etc.
+  - Applets can have special privileges. They have to be tagged as trusted applets and they must be registered to APS (Applet Security Manager).
+  - Applet has little restriction when it comes to communication. It can communicate only with the machine from which it was loaded.
+  - Applet cannot work with native methods.
+  - Applet can only extract information about client-machine is its name, java version, OS, version etc ... .
+  - Applets tend to be slow on execution because all the classes and resources which it needs have to be transported over the network.
+
+## Advantages of applet
+  - As applet is a small java program, so it is platform independent code which is capable to run on any browser.
+  - Applets can perform various small tasks on client-side machines. They can play sounds, show images, get user inputs, get mouse clicks and even get user keystrokes, etc ...
+  - Applets creates and edit graphics on client-side which are different and independent of client-side platform.
+  - As compared to stand-alone application applets are small in size, the advantage of transferring it over network makes it more usable.
+  - Applets run on client browser so they provide functionality to import resources such as images, audio clips based on Url's.
+  - Applets are quite secure because of their access to resources.
+  - Applets are secure and safe to use because they cannot perform any modifications over local system.
+  - Various small tasks such as performing login, inventory checking, task scheduling can be done by applets running over Intranets.
+
+``` java
+// JDBC DEMO
+import java.sql.*;
+
+class JDBCDemo {
+    public static void main(String args[]) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Driver Loaded");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "");
+            // create table if not exists
+            PreparedStatement statement = conn.prepareStatement("create table if not exists user(id int primary key auto_increment, name varchar(50), email varchar(100))");
+            statement.execute();
+            // insert
+            statement = conn.prepareStatement("insert into user  (name, email) values (?,?)");
+            statement.setString(1, "smit");
+            statement.setString(2, "smitthakkar96@gmail.com");
+            statement.executeUpdate();
+            System.out.println("Connected");
+            // select
+            statement = conn.prepareStatement("select * from user");
+            ResultSet result = statement.executeQuery();
+            while(result.next()) {
+                System.out.println(result.getString("name"));
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e.toString());
+        }
+
+    }
+}
+```
+
+# Listeners Demo
+``` java
+import java.awt.*;
+import java.awt.event.*;
+import java.applet.*;
+
+/*
+    <applet code="MouseListenerDemo" width=300 height=500></applet>
+*/
+
+public class MouseListenerDemo extends Applet implements MouseListener, ActionListener, TextListener, MouseMotionListener {
+    Button myBtn;
+    Label myLabel;
+    TextArea myTextField;
+    int x = 0, y = 0;
+    public void init() {
+        // setLayout(new GridLayout(3,3));
+        // setLayout(new BorderLayout());
+        setLayout(new FlowLayout(FlowLayout.LEFT));
+        myBtn = new Button();
+        myLabel = new Label();
+        myTextField = new TextArea("Input Something");
+        myTextField.addTextListener(this);
+        myLabel.setText("Hello");
+        addMouseListener(this);
+        myBtn.addActionListener(this);
+        add(myTextField);
+        add(myBtn);
+        add(myLabel);
+        addMouseMotionListener(this);
+    }
+
+    public void textValueChanged(TextEvent e) {
+        System.out.println(e.toString());
+        myLabel.setText(myTextField.getText());
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        myBtn.setLabel("Fuck");
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        setBackground(Color.blue);
+    }
+
+    public void mouseEntered(MouseEvent e) {
+        setBackground(Color.yellow);
+    }
+
+    public void mouseExited(MouseEvent e) {
+        setBackground(Color.green);
+    }
+
+    public void mousePressed(MouseEvent e) {
+        setBackground(Color.pink);
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        System.out.println("mouse mouseReleased");
+        setBackground(Color.red);
+    }
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
+    public void paint(Graphics g) {
+        g.drawOval(x, y, 200, 200);
+    }
+    public void mouseDragged(MouseEvent e) {
+        System.out.println(e.toString());
+        x = e.getX();
+        y = e.getY();
+        repaint();
+    }
+}
+```

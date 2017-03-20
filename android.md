@@ -46,12 +46,129 @@ The foreground lifetime of an activity happens between a call to onResume() unti
      protected void onRestart(); // This callback is called when the activity restarts after stopping it.
 
      protected void onResume(); // This is called when the user starts interacting with the application.
-
      protected void onPause(); // The paused activity does not receive user input and cannot execute any code and called when the current activity is being paused and the previous activity is being resumed.
-
      protected void onStop(); // This callback is called when the activity is no longer visible.
 
      protected void onDestroy(); // This callback is called when the activity restarts after stopping it.
  }
- 
+
+```
+
+## Linear Layout
+``` xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical" >
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/to" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/subject" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:hint="@string/message" />
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="@string/send" />
+</LinearLayout>
+```
+
+## Relative Layout
+
+RelativeLayout is a view group that displays child views in relative positions. The position of each view can be specified as relative to sibling elements (such as to the left-of or below another view) or in positions relative to the parent RelativeLayout area (such as aligned to the bottom, left or center).
+
+``` xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/reminder" />
+    <Spinner
+        android:id="@+id/dates"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/times" />
+    <Spinner
+        android:id="@id/times"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_alignParentRight="true" />
+    <Button
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/times"
+        android:layout_alignParentRight="true"
+        android:text="@string/done" />
+</RelativeLayout>
+```
+
+``` xml
+    <RelativeLayout
+        android:width="match_parent"
+        android:height="wrap_content"
+        android:padding="10dp">
+        <EditText
+            android:layout_alignParentLeft="true"
+            android:width="300dp"
+            android:height="wrap_content"
+            android:hint="Enter Name"
+            android:id="@+id/name"/>
+        <EditText
+            android:layout_alignParentRight="false"
+            android:width="96dp"
+            android:height="wrap_content"
+            android:text="submit"
+            android:layout_toRightOf="@+id/name"/>
+    </RelativeLayout>
+```
+
+## Platform architechure
+![platform architechure](https://developer.android.com/guide/platform/images/android-stack_2x.png)
+
+
+## Toggle Button
+
+``` xml
+<ToggleButton
+    android:id="@+id/toogleButton"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"/>
+```
+
+``` java
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
+    toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener{
+        public void onCheckedChange(CompoundButton b, boolean checked) {
+            if(checked) {
+                Toast.makeText(getApplicationContext(), "on", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "off", Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
+}
 ```
