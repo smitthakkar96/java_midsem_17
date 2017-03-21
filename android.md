@@ -2,7 +2,7 @@
 
 ## What is mobile communication?
 
-A wireless form of communication in which voice and data information is emitted, transmitted and received via microwaves. This type of communication allows individuals to converse with one another and/or transmit and receive data while moving from place to place. Some examples include: cellular and digital cordless telephones; pagers; telephone answering devices; air-to- ground telecommunications; and satellite-based communications.
+A wireless form of communication in which voice and data information, transmitted and received via microwaves. This type of communication allows individuals to converse with one another and/or transmit and receive data while moving from place to place. Some examples include: cellular and digital cordless telephones; pagers; telephone answering devices; air-to- ground telecommunications; and satellite-based communications.
 
 ## What is middleware?
 Software that facilitates exchange of data between two application programs within the same environment, or across different hardware and network environments. Three basic types of middleware are (1) communication middleware, (2) database middleware, and (3) system middleware.
