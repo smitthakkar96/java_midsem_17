@@ -2,13 +2,8 @@
 
 ## What is mobile communication?
 
-
-communication using mobile phones and portable computing devices
-	 such as smartphones and tablet computers.
- 
-	 Mobile Communication: A communication network (either public or private) which
-	 doesn't depend on any physical connection between two communication entities and
-	 have flexibility to be mobile during communication
+Communication using mobile phones and portable computing devices. Such as smartphones and tablet computers.
+Mobile Communication: A communication network (either public or private) which doesn't depend on any physical connection between two communication entities and have flexibility to be mobile during communication
 
 ## What is middleware?
 Software that facilitates exchange of data between two application programs within the same environment, or across different hardware and network environments. Three basic types of middleware are (1) communication middleware, (2) database middleware, and (3) system middleware.
